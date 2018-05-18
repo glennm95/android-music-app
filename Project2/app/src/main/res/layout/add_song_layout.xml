@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_new_song"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/add_song_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="Add Song Title"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/add_song_artist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="Add Song Artist"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/add_song_wiki"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="Add Song Wiki"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/add_artist_wiki"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="Add Artist Wiki"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/add_song_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="Add Song Video"
+        android:inputType="textPersonName" />
+</LinearLayout>

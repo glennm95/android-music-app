@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_song"
+        android:title="Add Song"
+        android:orderInCategory="1">
+    </item>
+    <item
+        android:id="@+id/exit_app"
+        android:title="Exit App"
+        android:orderInCategory="3">
+    </item>
+</menu>
