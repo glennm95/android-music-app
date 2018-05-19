@@ -1,6 +1,7 @@
 package edu.uic.cs478.gmasca2.project2;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import java.util.List;
  */
 
 class SongListAdapter extends BaseAdapter {
-
     private Context context;
     private List<SongItem> songList;
 
@@ -38,19 +38,32 @@ class SongListAdapter extends BaseAdapter {
         return i;
     }
 
+    static class ViewHolder{
+        TextView songName;
+        TextView songArtist;
+    }
+
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
 
-        LayoutInflater myInflater = LayoutInflater.from(context);
+        ViewHolder viewHolder;
+        if(convertView == null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.song_item,viewGroup,false);
+            viewHolder = new ViewHolder();
 
-        View customView = myInflater.inflate(R.layout.song_item,viewGroup,false);
-        TextView songName = customView.findViewById(R.id.song_title);
-        TextView songArtist = customView.findViewById(R.id.song_artist);
+            viewHolder.songName = convertView.findViewById(R.id.song_title);
+            viewHolder.songArtist = convertView.findViewById(R.id.song_artist);
 
-        songName.setText(songList.get(i).getSongName());
-        songArtist.setText(songList.get(i).getSongArtist());
+            convertView.setTag(viewHolder);
+        }
 
-        return customView;
+        else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
+        viewHolder.songName.setText(songList.get(position).getSongName());
+        viewHolder.songArtist.setText(songList.get(position).getSongArtist());
+
+        return convertView;
     }
 }

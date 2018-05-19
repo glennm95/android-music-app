@@ -19,20 +19,16 @@ import java.util.List;
 
 
 public class MainListActivity extends Activity {
-
     public ListView listViewObject;
     public static SongListAdapter adapter;
     public static List<SongItem> songList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listViewObject = findViewById(R.id.listView);
-
-
+        listViewObject = findViewById(R.id.list_view);
         songList = new ArrayList<>();
 
         songList.add(new SongItem("Attention","Charlie Puth", "https://en.wikipedia.org/wiki/Attention_(Charlie_Puth_song)", "https://en.wikipedia.org/wiki/Charlie_Puth", "https://www.youtube.com/watch?v=nfs8NYg7yQM"));
@@ -45,27 +41,20 @@ public class MainListActivity extends Activity {
 
         listViewObject.setAdapter(adapter);
 
-        final Intent intent = new Intent(this, WebActivity.class);
-
-
-        listViewObject.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        listViewObject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-            {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 SongItem song = (SongItem) adapterView.getItemAtPosition(i);
                 String sv = song.getSongVideo();
+                Intent intent = new Intent(MainListActivity.this, WebActivity.class);
                 intent.putExtra("url",sv);
                 startActivity(intent);
             }
         });
-
         registerForContextMenu(listViewObject);
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.my_options_menu, menu);
         menu.addSubMenu(Menu.NONE,20, 1, "Remove Song");
@@ -83,15 +72,12 @@ public class MainListActivity extends Activity {
 
 
 
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.add_song:
                 FragmentManager manager = getFragmentManager();
                 AddNewSongDialog dialog = new AddNewSongDialog();
                 dialog.show(manager,"MyDialog");
-
                 return true;
             case 20:
                 return true;
@@ -102,12 +88,9 @@ public class MainListActivity extends Activity {
             default:
                 if(songList.size()==1)
                     Toast.makeText(MainListActivity.this,"Minimum should be 1", Toast.LENGTH_LONG).show();
-                else
-                {
-                    for(int j=0;j<songList.size();j++)
-                    {
-                        if(item.getTitle()==songList.get(j).getSongName())
-                        {
+                else {
+                    for(int j=0;j<songList.size();j++) {
+                        if(item.getTitle()==songList.get(j).getSongName()) {
                             songList.remove(j);
                             adapter.notifyDataSetChanged();
                         }
@@ -115,7 +98,6 @@ public class MainListActivity extends Activity {
                 }
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
 
@@ -126,9 +108,7 @@ public class MainListActivity extends Activity {
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-
         switch (item.getItemId()) {
             case 1:
                 String video = songList.get(info.position).getSongVideo();
@@ -152,5 +132,4 @@ public class MainListActivity extends Activity {
                 return super.onContextItemSelected(item);
         }
     }
-
 }
